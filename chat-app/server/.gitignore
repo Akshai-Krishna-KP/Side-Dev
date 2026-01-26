@@ -1,0 +1,6 @@
+# common python directories and file
+venv
+__pycache__
+
+# Enviromnetal File
+.env
