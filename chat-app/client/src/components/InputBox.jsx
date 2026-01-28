@@ -1,64 +1,61 @@
-import { useState } from 'react';
+import { useState, useRef } from "react";
+import { Send } from "lucide-react";
 
 function InputBox({ onSendMessage, disabled }) {
-  const [message, setMessage] = useState('');
+  // react hooks
+  const [message, setMessage] = useState("");
+  const editorRef = useRef(null);
 
+  /**
+   * @brief Handles the submission of the message form
+   * @param {*} e
+   */
   const handleSubmit = (e) => {
-    e.preventDefault();
-    if (message.trim() && onSendMessage) {
-      onSendMessage(message.trim());
-      setMessage('');
+    // get the message from the content editable div
+    setMessage(editorRef.current.innerText);
+
+    e.preventDefault(); // stop the browser from reloading the page
+    if (message?.trim() && onSendMessage) {
+      onSendMessage(message.trim()); // send the message to App.jsx
+      editorRef.current.innerText = ""; // clear the input box
+      setMessage("");
     }
   };
 
+  /**
+   * @brief Handles key down events for the input box
+   * @param {*} e
+   */
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSubmit(e);
     }
   };
 
   return (
-    <div className="input-area">
-      <form className="input-wrapper" onSubmit={handleSubmit}>
-        <div className="input-actions">
-          <button type="button" className="input-btn" title="Attach file">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
-            </svg>
-          </button>
-          <button type="button" className="input-btn" title="Add emoji">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <circle cx="12" cy="12" r="10" />
-              <path d="M8 14s1.5 2 4 2 4-2 4-2" />
-              <line x1="9" y1="9" x2="9.01" y2="9" />
-              <line x1="15" y1="9" x2="15.01" y2="9" />
-            </svg>
-          </button>
-        </div>
+    <div className="border-2 border-purple-400 rounded-full px-4 py-2 flex items-end gap-2">
+      {/* used the div instead of textarea to allow whatsapp like style */}
+      <div
+        ref={editorRef}
+        contentEditable={!disabled}
+        role="textbox"
+        spellCheck
+        className="flex-1 outline-none bg-transparent max-h-40 overflow-y-auto whitespace-pre-wrap break-words"
+        placeholder="Type a message"
+        onKeyDown={handleKeyDown}
+        data-placeholder={!disabled ? "Type a message..." : ""}
+        suppressContentEditableWarning
+      />
 
-        <input
-          type="text"
-          className="message-input"
-          placeholder={disabled ? "Select a user to chat..." : "Type a message..."}
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          onKeyDown={handleKeyDown}
-          disabled={disabled}
-        />
-
-        <button
-          type="submit"
-          className="send-btn"
-          disabled={!message.trim() || disabled}
-          title="Send message"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <line x1="22" y1="2" x2="11" y2="13" />
-            <polygon points="22 2 15 22 11 13 2 9 22 2" />
-          </svg>
-        </button>
-      </form>
+      <button
+        onClick={handleSubmit}
+        disabled={disabled}
+        className="p-2 hover:bg-gray-100 rounded-full disabled:opacity-50"
+        title="Send message"
+      >
+        <Send />
+      </button>
     </div>
   );
 }
