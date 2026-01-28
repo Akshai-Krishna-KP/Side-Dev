@@ -137,13 +137,13 @@ function App() {
       <main className="chat-main">
         <ChatHeader activeUser={activeUser} />
 
-        <ChatArea
+        {/* <ChatArea
           activeUser={activeUser}
           messages={currentMessages}
           currentUserId={CURRENT_USER_ID}
-        />
+        /> */}
 
-        <InputBox onSendMessage={handleSendMessage} disabled={!activeUser} />
+        {/* <InputBox onSendMessage={handleSendMessage} disabled={!activeUser} /> */}
       </main>
     </div>
   );
