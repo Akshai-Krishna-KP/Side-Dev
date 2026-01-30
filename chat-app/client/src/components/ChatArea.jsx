@@ -20,9 +20,9 @@ function ChatArea({ activeUser, messages, currentUserId }) {
    */
   if (!activeUser) {
     return (
-      <div className="messages-area">
-        <div className="empty-state">
-          <div className="empty-state-icon">💬</div>
+      <div>
+        <div>
+          <div>💬</div>
           <h3>Select a conversation</h3>
           <p>Choose a user from the sidebar to start chatting</p>
         </div>
@@ -31,21 +31,18 @@ function ChatArea({ activeUser, messages, currentUserId }) {
   }
 
   return (
-    <div className="messages-area">
+    <div>
       {messages.length === 0 ? (
-        <div className="empty-state">
+        <div>
           <h3>Start the conversation</h3>
           <p>Send a message to {activeUser.name} to get started</p>
         </div>
       ) : (
         <>
           {messages.map((message) => (
-            <div
-              key={message.id}
-              className={`message ${message.senderId === currentUserId ? "sent" : "received"}`}
-            >
-              <div className="message-content">
-                <div className="message-bubble">{message.content}</div>
+            <div key={message.id}>
+              <div>
+                <div>{message.content}</div>
                 <span className="text-xs">{formatTime(message.timestamp)}</span>
               </div>
             </div>

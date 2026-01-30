@@ -12,7 +12,7 @@ function ChatHeader({ activeUser }) {
       {/* Show the chat-app name and icon */}
       <div className="flex items-center gap-2 mb-2">
         <img
-          src="../../public/icon.png"
+          src="/icon.png"
           alt="Chat App Icon"
           className="h-6 w-6 object-contain"
         />

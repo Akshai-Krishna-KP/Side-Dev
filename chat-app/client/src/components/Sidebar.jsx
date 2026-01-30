@@ -10,14 +10,14 @@
 function Sidebar({ users, activeUser, onUserSelect }) {
   return (
     // uses aside tag for sidebar
-    <aside className="border-2 border-black-200">
+    <aside>
       {/* // Side bar header can be used to name the chat-app */}
-      <div id="Side-bar-header" className="p-4 border-b border-black-200">
+      <div className="p-4 border-b">
         <h1 className="text-2xl font-bold">Samsaram</h1>
         <p className="text-sm text-gray-500">Conversations</p>
       </div>
       {/* // Show the content of the users List */}
-      <div className="border-2 border-red-200">
+      <div>
         {/* // work similar to for-each loop
         // if users is empty return a [] and thus no rendering */}
         {users.map((user) => {
