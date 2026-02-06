@@ -1,1 +1,53 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+
+@theme {
+  /* Custom font */
+  --font-minecraft: "VT323", monospace;
+
+  /* Background images */
+  --background-image-login-bg: url("/image/login-bg.png");
+  --background-image-signup-bg: url("/image/signup-bg.png");
+  --background-image-dark-oak-planks: url("/texture/planks_big_oak.png");
+  --background-image-light-oak-planks: url("/texture/planks_oak.png");
+  --background-image-stone-bricks: url("/texture/stonebrick.png");
+
+  /* Minecraft colors */
+  --color-mc-green-light: #6ee056;
+  --color-mc-green: #5fce45;
+  --color-mc-green-mid: #4db734;
+  --color-mc-green-dark: #3d9128;
+  --color-mc-green-darker: #2d6a1a;
+  --color-mc-gold: #ffd700;
+  --color-mc-wood-dark: #2a1a0a;
+  --color-mc-gray: #3a3a3a;
+  --color-mc-gray-light: #555555;
+  --color-mc-gray-lighter: #777777;
+
+  /* Fonts */
+  --font-minecraft: "Minecraft", "VT323", monospace;
+}
+
+/* Minecraft Fonts */
+@font-face {
+  font-family: "Minecraft";
+  src: url("/fonts/minecraft.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Stone Border Classes */
+.border-stonebricks {
+  position: relative;
+  padding: 16px;
+  background: url("/texture/stonebrick.png") repeat;
+  background-size: 32px 32px;
+  image-rendering: pixelated;
+}
+
+.border-stonebricks-inner {
+  background: url("/texture/planks_big_oak.png") repeat;
+  background-size: 64px 64px;
+  image-rendering: pixelated;
+}
